@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List nodejs</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+
+    <div class="box" id="heading">
+        <h1>
+            <%= day %>
+        </h1>
+    </div>
+
+    <div class="box">
+        <% for(let i=0; i < newListItems.length; i++){ %>
+            <div class="item">
+                <input type="checkbox" />
+                <p>
+                    <%= newListItems[i] %>
+                </p>
+            </div>
+            <%}%>
+    </div>
+
+
+    <div class="box">
+        <form class="item" action="/" method="post">
+            <label for="newItem" autocomplete="off">Tarefa:</label>
+            <input type="text" name="newItem" id="newItem">
+            <button type="form">+</button>
+        </form>
+    </div>
+
+
+
+
+</body>
+
+</html>
