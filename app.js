@@ -10,6 +10,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
 
 let items = [];
+let workItems = [];
 
 
 
@@ -27,28 +28,46 @@ app.get('/', (req, res) => {
     let day = today.toLocaleDateString('pt-BR', option)
 
     res.render('list', {
-        day: day,
+        listTitle: day,
         newListItems: items
     })
 }
 )
 
 app.post('/', (req, res) => {
+    console.log(req.body)
+
     let item = req.body.newItem
-    items.push(item)
 
-    console.log(item, items)
 
-    res.redirect('/')
+    if(req.body.list === 'trabalho'){
+        workItems.push(item)
+        res.redirect('/trabalho')
+    }else{
+        items.push(item)
+        res.redirect('/')
+    }
+
+
 })
 
 app.listen(port, (req, res) => {
     console.log(`App rodando na porta: ${port}`)
 })
 
+app.get('/trabalho', (req,res) => {
+    res.render('list', {
+        listTitle: 'Trabalho',
+        newListItems: workItems
+    })
+})
 
+app.post('/trabalho', (req, res) => {
+    let item = req.body.newItem
+    workItems.push(item)
 
-
+    res.redirect('/trabalho')
+})
 
 /**
  * 

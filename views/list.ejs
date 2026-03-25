@@ -12,7 +12,7 @@
 
     <div class="box" id="heading">
         <h1>
-            <%= day %>
+            <%= listTitle %>
         </h1>
     </div>
 
@@ -29,10 +29,10 @@
 
 
     <div class="box">
-        <form class="item" action="/" method="post">
+        <form class="item" action="<%= listTitle === 'Trabalho' ? '/trabalho' : '/' %>" method="post">
             <label for="newItem" autocomplete="off">Tarefa:</label>
             <input type="text" name="newItem" id="newItem">
-            <button type="form">+</button>
+<button type="submit" name="list" value=<%= listTitle === 'Trabalho' ? 'trabalho' : 'casa' %>">+</button>
         </form>
     </div>
 
